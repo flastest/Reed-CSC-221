@@ -24,7 +24,7 @@ int main() {
 	int num;
 	std::cout << "Give me a number you want to find multiples of.\n";
 	std::cin >> num;
-	std::cout << "Thanks";
+	std::cout << "Thanks\n";
 
 	int counter = 0; // initializing counter of multiples of num
 
@@ -34,17 +34,17 @@ int main() {
 		std::cout << "Enter a number to see if it is a multiple of " << num << "\n";
 		std::cin >> input;
 
-		string output = "is not a multiple of "; 	// This is default what will return if
+		std::string output = " is not a multiple of "; 	// This is default what will return if
 									 				// the number is not a multiple, it will
 													// change if isMultiple return true
 		if (isMultiple(input,num)) {
-			output = "is a multiple of ";
+			output = " is a multiple of ";
 			counter++;
 		}
 
 		std::cout << input << output << num << "\n"; // Printing a gramatically correct sentence
 
 	}
-	std::cout << "There were " << counter << " multiples of " << " num.";
+	std::cout << "There were " << counter << " multiples of " << num;
 	return 0;
 }
