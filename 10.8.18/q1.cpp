@@ -7,16 +7,16 @@ int main() {
 	std::cout << "Enter three integers\n";
 	std::cin >> firstNumber >> secondNumber >> thirdNumber;
 
-	int biggestNum= firstNumber;
+	int smallestNum= firstNumber;
 
-	if(biggestNum < secondNumber) {
-		biggestNum = secondNumber;
+	if(smallestNum > secondNumber) {
+		smallestNum = secondNumber;
 	}
-	if (biggestNum < thirdNumber) {
-		biggestNum = thirdNumber;
+	if (smallestNum > thirdNumber) {
+		smallestNum = thirdNumber;
 	}
 
-	std::cout << "The biggest number is ";
-	std::cout << biggestNum;
+	std::cout << "The smallest number is ";
+	std::cout << smallestNum;
 	return 0;
 }
