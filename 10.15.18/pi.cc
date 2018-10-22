@@ -22,6 +22,25 @@ double gridpi(unsigned npoints) {
 	return (inCircle/inSquare)*4.0;
 }
 
+
+//this one runs at compile time!
+constexpr double gridpi2(unsigned npoints) {
+	const double size = npoints;			// idk did u want to also do 1/4 of npoints??
+	double inCircle = 0;					// init counter for num of things in circle
+	double inSquare = size*size; 			// number of total darts thrown in this part of square
+
+	for (double i = 0; i < size; i++) {		// iterates thru rows
+		const double posY = double(i/size);				// setting posY for this row
+		for (double j = 0; j < size; j++) {	// iterates thru each pt
+			const double posX = j/size;					// setting posX for this position
+			if(std::hypot(posX,posY) < 1.0) {
+				inCircle++;
+			}
+		}
+	}
+	return (inCircle/inSquare)*4.0;
+}
+
 int main()	{
 	std::cout << "for a trial of 10, pi is:\n";
 	std::cout << gridpi(10) << "\n";
@@ -35,7 +54,8 @@ int main()	{
 	std::cout << "for a trial of 10000, pi is:\n";
 	std::cout << gridpi(10000) << "\n";
 	
-
+	std::cout << "for a trial of 100, constexpr pi is:\n";
+	std::cout << gridpi2(100) << "\n";
 
 	return 0;
 }
