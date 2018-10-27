@@ -1,5 +1,6 @@
 //This will test the tree class
 ////
+// g++ -g -Wall -Wextra -pedantic -Werror test_tree.cc tree.cc -o test_tree.exe
 #include "tree.hh"
 #include <stdint.h>
 #include <iostream>
@@ -68,6 +69,12 @@ static void test1(){
 	cout<<"path to " << search << " is " +path_to(tree126,search) + "\n";
 	
 	cout <<"and the thing at that node is " <<  node_at(tree126,path_to(tree126,search))->key_ << " \n";
+
+	cout << "RL brings us to node " << node_at(tree126,"RL")->key_<<"\n";
+
+	cout << "the path to 126 is '" << path_to(tree126,126) << "' \n";
+
+	cout << "blank string leads us to node " << node_at(tree126,"")->key_<<"\n";  
 
 	destroy_tree(tree9);
 	/*for (int i = 0; i < 5; i++){
