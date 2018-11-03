@@ -7,6 +7,8 @@
 
 #include <memory>
 #include <list>
+#include <iostream>
+#include <ostream>
 
 class HTree {
  public:
@@ -30,7 +32,7 @@ class HTree {
   // Crashes (with an assert) if key not contained in this tree
   path_t path_to(int key) const;
  
- 
+  std::string GetDebugString() const;
 
 
 private:
@@ -42,3 +44,6 @@ private:
   // helper function for path_to
   bool isValueHere( int key) const;
 };
+
+
+

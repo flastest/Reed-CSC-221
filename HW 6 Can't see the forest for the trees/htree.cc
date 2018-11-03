@@ -37,13 +37,13 @@ HTree::path_t HTree::path_to(int key) const {
   }
 
   //checks if the key is in the left tree using a recursive helper function
-  if (MrLeft->isValueHere( key)) {
+  if (MrLeft&&MrLeft->isValueHere( key)) {
     path_t tmp = MrLeft->path_to(key);
     tmp.push_front(Direction::LEFT);
     return tmp;
   }
   // does same thing as above but with right tree
-  else if (MrRight->isValueHere( key)) {
+  else if (MrRight&&MrRight->isValueHere( key)) {
     path_t tmp = MrRight->path_to(key);
     tmp.push_front(Direction::RIGHT);
     return tmp; 
@@ -75,4 +75,17 @@ bool HTree::isValueHere( int key) const{
   }
   return false;
 
+}
+
+std::string HTree::GetDebugString() const {
+  char buf[256];
+  sprintf(buf, "%d ", get_key());
+  std::string ans(buf);
+  if (MrLeft) {
+    ans += " L (" + MrLeft->GetDebugString() + ")";
+  }
+  if (MrRight) {
+    ans += " R (" + MrRight->GetDebugString() + ")";
+  }
+  return ans;
 }

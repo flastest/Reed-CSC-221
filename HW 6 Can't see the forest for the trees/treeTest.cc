@@ -3,7 +3,15 @@
 #include <iostream>
 
 using std::cout;
+using std::endl;
 using tree_ptr_t = std::shared_ptr<const HTree>;
+
+
+std::ostream& operator<<(std::ostream& thingey, const HTree &tree) {
+  std::cout<< tree.GetDebugString();
+  return thingey;
+}
+
 
 static void test1(){
 	//gonna make this guy:
@@ -65,6 +73,8 @@ static void test1(){
 		cout<< (thing==HTree::Direction::LEFT?"Left":"Right") <<"\n";
 	}
 	
+	cout << "tree126 is " << (*tree126) << endl;
+	cout<<"LEFT child of 126 is "<<(*tree126->get_child(HTree::Direction::LEFT)) << endl;
 	//cout <<"and the thing at that node is " <<  node_at(tree126,path_to(tree126,search))->key_ << " \n";
 
 	//cout << "RL brings us to node " << node_at(tree126,"RL")->key_<<"\n";
