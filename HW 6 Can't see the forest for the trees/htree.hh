@@ -16,7 +16,7 @@ class HTree {
 
   // Initialize with a key and a value:
   HTree(int key, uint64_t value);
-  HTree(int key, uint64_t value, tree_ptr_t left = nullptr, tree_ptr_t right = nullptr);
+  HTree(int key, uint64_t value, tree_ptr_t left, tree_ptr_t right = nullptr);
   ~HTree() = default;
 
   int get_key() const;  // Return key in current node
@@ -29,12 +29,8 @@ class HTree {
   // Return a list of directions from root to a node of a given key.
   // Crashes (with an assert) if key not contained in this tree
   path_t path_to(int key) const;
-
-  // adds a child to the tree
-  void addChild (Direction dir, HTree child);
-
-  // creates ptr to this tree
-  //tree_ptr_t getShrPtr() const;
+ 
+ 
 
 
 private:
@@ -44,5 +40,5 @@ private:
   tree_ptr_t MrLeft;
 
   // helper function for path_to
-  bool isValueHere(tree_ptr_t tree, int key);
+  bool isValueHere( int key) const;
 };
