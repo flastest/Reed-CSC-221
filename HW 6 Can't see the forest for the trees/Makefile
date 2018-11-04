@@ -10,3 +10,5 @@ andshake:
 	echo fart
 forest:
 	g++ -g -Wall -Wextra -pedantic -Werror hforest.cc forestTest.cc htree.cc -o forestTester.exe
+clean:
+	rm *.o *.exe
