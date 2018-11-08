@@ -7,6 +7,7 @@
 
 #include <climits>
 #include <vector>
+#include <list>
 
 #include "htree.hh"
 #include "hforest.hh"
@@ -45,19 +46,20 @@ class Huffman {
   
 
 private:
-  HForest jimmy = new HTree();
+  using forest_t = std::shared_ptr<HForest>;
+  forest_t jimmy;
   // Like MapReduce, FrqTable also refers to something other than what
-  // the name suggests.
-  void addToFrqTable(int symbol);
-  tree_t huffTree = nullptr;
+  // the name suggests. It adds a tree to forest Jimmy, or increments a tree.
+  //void addToFrqTable(int symbol);
+  tree_t huffTree;
   
 
   // if there's already a hufftree, it's stupid to remake it.
   // neither of these are implemented, maybe I'll get to it...
-  void createOrAddToTree(tree_t newTree);
+  /*void createOrAddToTree(tree_t newTree);
   void addToTree(tree_t newTree);
   void switchNodes(tree_t tree1, tree_t tree2);
-  
+  */
   //adds EOF to the tree
   void addEOF();
 
@@ -68,5 +70,19 @@ private:
   //helper function, takes a list of directions and converts them to bits_t
   bits_t parsePath(path_t path); 
   // do I really need to put Direction enum and path_t in this file if I only mention it once?
+
+  //for decode, we need a pointer to where we currently at
+  tree_t currentSpot;
+
+  //fine I'll do a frequency table !!
+  std::vector<int> frqTable;
+
+
+  // fine this will actually do what it says it will
+  void updateRealFrqTable(int symbol);
+
+  //takes the frq table and creates a forest
+  // puts that forest into Jimmy
+  void createForest();
 
 };

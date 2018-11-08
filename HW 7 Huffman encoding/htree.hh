@@ -55,7 +55,7 @@ class HTree {
 
   // returns true if actually increments value.
   bool incrementVal() {
-    value_++;
+    value_ ++;
     return true;
   } 
 

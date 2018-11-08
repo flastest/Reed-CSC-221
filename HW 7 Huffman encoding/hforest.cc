@@ -38,7 +38,7 @@ HForest::pop_top()
   return ret;
 }
 
-
+/*
 bool HForest::findKeyAndIncrementValue(int key) {
   for (HTree* i:trees_) {
     if (i->get_key() == key){
@@ -48,4 +48,4 @@ bool HForest::findKeyAndIncrementValue(int key) {
   }
   return false;
 }
-
+*/
