@@ -59,21 +59,6 @@ class HTree {
     return true;
   } 
 
-  bool addChildLeft(tree_ptr_t adoptedChild) {
-    if(left_==nullptr){
-      left_ = adoptedChild;
-      return true;
-    }
-    return false;
-  }
-
-  bool addChildRight(tree_ptr_t adoptedChild) {
-    if(right_==nullptr){
-      right_ = adoptedChild;
-      return true;
-    }
-    return false;
-  }
 
 
  private:
