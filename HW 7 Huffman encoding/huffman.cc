@@ -40,6 +40,8 @@ Huffman::Huffman(){
 	huffTree = nullptr;
 	createForest();
 	createTree();
+	
+
 }
 
 Huffman::~Huffman(){
@@ -65,14 +67,11 @@ tree_t Huffman::createTree(){
 		tree_t tree1 = jimmy->pop_top(); 
 		tree_t tree2 = jimmy->pop_top();
 		newTree = std::make_shared<HTree>(HTree(-1,tree1->get_value() + tree2->get_value(),tree2,tree1));
-		if(i>250){
-		std::cout<<"This is one of the trees we're merging "<<tree1->get_key() <<" with value "<<tree1->get_value() <<"\n";
-		std::cout<<"This is the other tree we're merging "<<(char)tree2->get_key() <<" with value "<<tree2->get_value()<<"\n";
-		}
 		jimmy->add_tree(newTree);
 	}
 	//sets the huffTree in Huffman class to a huffman tree!! I did it!
 	huffTree = newTree;
+	/* in case of emergency: break asterisk
 	path_t_t_t path1 = huffTree->path_to('a');
 	path_t_t_t path2 = huffTree->path_to('b');
 	std::cout<<"path to a is ";
@@ -80,7 +79,7 @@ tree_t Huffman::createTree(){
 	std::cout<<"\npath to b is ";
 	parsePath(path2);
 	std::cout<<"\n";
-	
+	*/
 	
 	//gets ready to decode by setting current spot
 	currentSpot = newTree;
@@ -103,7 +102,7 @@ void Huffman::createForest(){
 }
 
 bits_t Huffman::encode(int symbol) {
-	std::cout<<"this is the path to "<<(char)symbol<<" \n";
+	//std::cout<<"this is the path to "<<(char)symbol<<" \n";
 	path_t_t_t path1 = huffTree->path_to(symbol);
 	updateRealFrqTable(symbol);
 	createForest();
@@ -117,17 +116,13 @@ bits_t Huffman::parsePath(path_t_t_t path) {
 	for(Direction d:path){
 		if(d==Direction::LEFT) {
 			bitString.push_back(false);
-			std::cout<<0;
-			break;
+//			std::cout<<0;
 		}
 		if(d==Direction::RIGHT) {
 			bitString.push_back(true);
-			std::cout<<1;
+//			std::cout<<1;
 		}
 	}
-	std::cout<<"\n";
-	std::cout<<"\n";
-
 	return bitString;
 }
 
@@ -137,7 +132,6 @@ bits_t Huffman::parsePath(path_t_t_t path) {
 //then needs to increment the frq table and replace 
 //the huffTree
 int Huffman::decode(bool bit) {
-	std::cout<<"current bit is "<< bit<<"\n";
 	
 	
 	if(bit) {
@@ -154,7 +148,6 @@ int Huffman::decode(bool bit) {
 		createForest();
 		currentSpot = createTree();
 	}
-	std::cout <<"curKey is "<<curKey<<"\n";
 	return curKey;
 }
 
