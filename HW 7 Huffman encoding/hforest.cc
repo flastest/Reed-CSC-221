@@ -19,7 +19,7 @@ compare_trees(HForest::tree_t t1, HForest::tree_t t2)
 // Add a single tree to the forest:
 void
 HForest::add_tree(tree_t tree)
-{
+{ 
   trees_.push_back(tree);
   std::push_heap(trees_.begin(), trees_.end(), compare_trees);
 }

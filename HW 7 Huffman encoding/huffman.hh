@@ -7,10 +7,11 @@
 
 #include <climits>
 #include <vector>
-#include <list>
+//#include <list>
 
 #include "htree.hh"
 #include "hforest.hh"
+
 
 class Huffman {
  public:
@@ -20,8 +21,11 @@ class Huffman {
 
   using bits_t = std::vector<bool>;
   using tree_t = HTree::tree_ptr_t;
-  enum class Direction { LEFT, RIGHT };
-  using path_t = std::list<Direction>;
+  //enum class Direction { LEFT, RIGHT };
+  //using path_t = std::list<Direction>;
+  using Direction = HTree::Direction;
+  using path_t_t = HTree::path_t;
+
 
   Huffman();
   ~Huffman();
@@ -58,7 +62,7 @@ private:
   // neither of these are implemented, maybe I'll get to it...
   /*void createOrAddToTree(tree_t newTree);
   void addToTree(tree_t newTree);
-  void switchNodes(tree_t tree1, tree_t tree2);
+  void switchNodes(tree_t tree1, tree_t tree2); 
   */
   //adds EOF to the tree
   void addEOF();
@@ -68,7 +72,7 @@ private:
   tree_t createTree();
 
   //helper function, takes a list of directions and converts them to bits_t
-  bits_t parsePath(path_t path); 
+  bits_t parsePath(path_t_t path); 
   // do I really need to put Direction enum and path_t in this file if I only mention it once?
 
   //for decode, we need a pointer to where we currently at

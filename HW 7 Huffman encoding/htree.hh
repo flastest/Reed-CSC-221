@@ -8,6 +8,7 @@
 #include <cassert>
 #include <memory>
 #include <list>
+#include <iostream>
 
 class HTree {
  public:
