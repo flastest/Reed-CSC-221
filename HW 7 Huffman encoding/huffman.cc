@@ -50,7 +50,7 @@ Huffman::~Huffman(){
 }
 
 void Huffman::addEOF(){ 
-	int EOFi = 256; 
+	int EOF = 256; 
 	//HTree* letter = new HTree(256, 966, nullptr,nullptr);
 	//tree_t newLetter = std::make_shared<const HTree>(letter);
 	tree_t newLetter = std::make_shared< HTree>(HTree(256, 966, nullptr,nullptr));
