@@ -20,6 +20,9 @@ class Cities {
 
 
   //we need a public vector of cities that doesn't ever get permuted
+  //this is like the key to the cities, cities_[0] will always be Portland 
+  //and will always have the same coordinates. These keys will be what is
+  //permuted in later functions.
   std::vector<coord_t> cities_;
 
   // Given a permutation, return a new Cities object where the order of the

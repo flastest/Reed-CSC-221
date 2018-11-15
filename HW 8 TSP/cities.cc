@@ -19,6 +19,7 @@ std::istream & operator>>(std::istream & is, Cities& city){
     return is;
 }
 
+//maybe have to use make_pair()? but no compiler errors with this
 std::ostream & operator<<(std::ostream & os, Cities& city){
     int x;
     int y;
@@ -44,24 +45,39 @@ double Cities::path_between(coord_t t1, coord_t t2) const{
 
 double Cities::total_path_distance(const permutation_t& ordering) const{
     double total;
-    for (int i = 0; i < order_of_cities.size() - 1; i++){
-        total += path_between(order_of_cities[i], order_of_cities[i+1]);
+    for (int i = 0; i < ordering.size() - 1; i++){
+        unsigned int currentIdx = ordering[i];
+        unsigned int nextIdx = ordering[i+1];
+        total += path_between(cities_[currentIdx],cities_[nextIdx]);
     }
-    total += path_between(order_of_cities[0], order_of_cities[order_of_cities.size()]); //no viable conversion from 'const value_type'(aka 'const int') to 'coord_t' (aka 'pair<int, int>')
-    return total;
+    total += path_between(cities_[0], cities_[ordering.size() - 1]); //no viable conversion from 'const value_type'(aka 'const int') to 'coord_t' (aka 'pair<int, int>')
+    const double ans = total;
+    return ans;
 }
 
-Cities::Cities Cities::reorder(const permutation_t& ordering) const{
-    return nullptr;
+Cities Cities::reorder(const permutation_t& ordering) const{
+    Cities new_city;
+    for (int i = 0; i < ordering.size() - 1; i++){
+        //if ordering is 4,3,2,1 and i is 1 for example, this should push 
+        //the 3rd element of this Cities's cities_ list to the new_city's
+        //cities_ list.
+        new_city.cities_.push_back(cities_[ordering[i]]);
+    }
+    return new_city;
 }
 
-permutation_t Cities::random_permutation(unsigned len){
-    std::std::vector<int> v(len);
+Cities::permutation_t Cities::random_permutation(unsigned len){
+    permutation_t v(len);
+    //creates a new vector with a permutation ready to be shuffled
     for (int i = 0; i < len; i ++) {
-        vector[i] = i;
+        v.push_back(i);
     }
+
+    //borrowed from:
+    //https://en.cppreference.com/w/cpp/algorithm/random_shuffle
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(v.begin(),v.end(),g);
-    return reorder(&v);
+
+    return (v);
 }
