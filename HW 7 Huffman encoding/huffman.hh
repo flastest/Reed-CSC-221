@@ -74,7 +74,7 @@ private:
   //helper function, takes a list of directions and converts them to bits_t
   bits_t parsePath(path_t_t path); 
   // do I really need to put Direction enum and path_t in this file if I only mention it once?
-
+  
   //for decode, we need a pointer to where we currently at
   tree_t currentSpot;
 
