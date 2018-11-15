@@ -1,20 +1,39 @@
 #include "cities.hh"
 #include <cmath>
+#include <random>
+#include <algorithm>
+#include <iterator>
 
 std::istream & operator>>(std::istream & is, Cities& city){
-    Cities::permutation_t city_order = city.get_permutation();
-    for (int i : city_order){
-        is >> city_order[i].first >> city_order[i].second;
+    int x;
+    int y;
+    std::vector<Cities::coord_t> list;
+    while (is>>x){
+        Cities::coord_t pair;
+        pair.first = x;
+        is >> y;
+        pair.second = y;
+        list.push_back(pair);
     }
+    city.cities_ = list;
     return is;
 }
 
 std::ostream & operator<<(std::ostream & os, Cities& city){
-    Cities::permutation_t city_order = city.get_permutation();
-    for (int i : city_order){
-        os << city_order[i].first << " " << city_order[i].second << "\n";
+    int x;
+    int y;
+    std::vector<Cities::coord_t> list;
+    list = city.cities_;
+    Cities::coord_t pair;
+    for (int i = 0; i < list.size(); i ++){
+        pair = list[i];
+        x = pair.first;
+        y = pair.second;
+        os<<x;
+        os<<y;
     }
     return os;
+
 }
 
 double Cities::path_between(coord_t t1, coord_t t2) const{
@@ -33,5 +52,16 @@ double Cities::total_path_distance(const permutation_t& ordering) const{
 }
 
 Cities::Cities Cities::reorder(const permutation_t& ordering) const{
-    
+    return nullptr;
+}
+
+permutation_t Cities::random_permutation(unsigned len){
+    std::std::vector<int> v(len);
+    for (int i = 0; i < len; i ++) {
+        vector[i] = i;
+    }
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(v.begin(),v.end(),g);
+    return reorder(&v);
 }
