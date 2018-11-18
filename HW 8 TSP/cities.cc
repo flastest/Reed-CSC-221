@@ -23,13 +23,12 @@ std::istream & operator>>(std::istream & is, Cities& city){
 std::ostream & operator<<(std::ostream & os, Cities& city){
     int x;
     int y;
-    std::vector<Cities::coord_t> list;
-    list = city.cities_;
+    Cities::permutation_t list;
+    list = city.order_of_cities;
     Cities::coord_t pair;
     for (int i = 0; i < list.size(); i ++){
-        pair = list[i];
-        x = pair.first;
-        y = pair.second;
+        x = city.cities_[list[i]].first;
+        y = city.cities_[list[i]].second;
         os<<x;
         os<<y;
     }

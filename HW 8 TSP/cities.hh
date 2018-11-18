@@ -45,9 +45,10 @@ class Cities {
   //this returns a random permutation of cities
   permutation_t random_permutation(unsigned len);
 
+  permutation_t order_of_cities;
 
 private:
-  permutation_t order_of_cities;
+  
 
   double path_between(coord_t t1, coord_t t2) const;
 
